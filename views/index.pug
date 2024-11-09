@@ -1,0 +1,99 @@
+//- index.pug
+
+extends layout
+
+block content
+  //- Header Section (already handled in layout.pug if applicable)
+  //- If not, include header elements here
+
+  //- Create Task Section
+  section#create-task
+    h2 Create Task
+    form#taskForm(method="post", action="/tasks")
+      div.form-group
+        label(for="taskTitle") Enter a new task
+        input#taskTitle(type="text", name="title", required)
+      div.form-group
+        label(for="taskNotes") Notes
+        textarea#taskNotes(name="notes")
+      div.form-group
+        label(for="taskDueDate") Due Date
+        input#taskDueDate(type="date", name="dueDate")
+      div.form-group
+        label(for="taskPriority") Priority
+        select#taskPriority(name="priority")
+          option(value="Low") Low
+          option(value="Medium", selected) Medium
+          option(value="High") High
+      div.form-group
+        label(for="taskTags") Tags
+        input#taskTags(type="text", name="tags", placeholder="Comma separated")
+      div.form-group
+        label(for="taskSubtasks") Subtasks
+        input#taskSubtasks(type="text", name="subtasks", placeholder="Comma separated")
+      div.form-group
+        label(for="taskRecurrence") Recurrence
+        select#taskRecurrence(name="recurrence")
+          option(value="None", selected) None
+          option(value="Daily") Daily
+          option(value="Weekly") Weekly
+          option(value="Monthly") Monthly
+      button(type="submit") Add Task
+
+  //- Active Tasks Section
+  section#active-tasks
+    h2 Active Tasks
+    if activeTasks.length
+      ul.task-list
+        each task in activeTasks
+          li
+            input(type="checkbox", onchange=`toggleTaskStatus('${task._id}', this.checked)`)
+            span.task-title= task.title
+            button.delete-btn(data-id=task._id, onclick=`deleteTask('${task._id}')`) 🗑️
+    else
+      p No active tasks.
+
+  //- Completed Tasks Section
+  section#completed-tasks
+    h2 Completed Tasks
+    if completedTasks.length
+      ul.task-list
+        each task in completedTasks
+          li
+            input(type="checkbox", checked, onchange=`toggleTaskStatus('${task._id}', this.checked)`)
+            span.task-title= task.title
+            button.delete-btn(data-id=task._id, onclick=`deleteTask('${task._id}')`) 🗑️
+    else
+      p No completed tasks.
+
+  //- Find Tasks Section
+  section#find-tasks
+    h2 Find Tasks
+    form#searchForm(method="get", action="/tasks/search")
+      div.form-group
+        label(for="searchText") Search Tasks
+        input#searchText(type="text", name="search")
+      div.form-group
+        label(for="filterStatus") Status
+        select#filterStatus(name="status")
+          option(value="All") All Statuses
+          option(value="Active") Active
+          option(value="Completed") Completed
+      div.form-group
+        label(for="filterPriority") Priority
+        select#filterPriority(name="priority")
+          option(value="All") All Priorities
+          option(value="Low") Low
+          option(value="Medium") Medium
+          option(value="High") High
+      div.form-group
+        label(for="sortBy") Sort By
+        select#sortBy(name="sortBy")
+          option(value="None") None
+          option(value="Priority") Priority
+          option(value="Due Date") Due Date
+      div.form-group
+        label(for="filterTags") Filter by Tags
+        input#filterTags(type="text", name="tags", placeholder="Comma separated")
+      button(type="submit") Search
+      button(type="button", id="clearFilters") Clear Filters

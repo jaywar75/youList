@@ -1,0 +1,394 @@
+/* public/stylesheets/style.css */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap');
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Define CSS Variables for Colors */
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #0dcaf0;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --body-bg: #f0f2f5;
+  --body-color: #212529;
+  --border-color: #dee2e6;
+  --border-radius: 0.25rem;
+}
+
+/* Global Styles */
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  background-color: var(--body-bg);
+  color: var(--body-color);
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header and Navigation */
+header {
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+header nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+header nav ul li a:hover {
+  color: var(--primary-color);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.theme-selector {
+  margin-left: 20px;
+}
+
+.theme-selector label {
+  color: #fff;
+  margin-right: 5px;
+}
+
+#theme-selector {
+  padding: 5px;
+  border: none;
+  border-radius: var(--border-radius);
+}
+
+/* Main Content */
+h1, h2, h3 {
+  font-family: 'Roboto', Arial, sans-serif;
+  color: var(--dark-color);
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.error {
+  color: var(--danger-color);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Forms */
+form {
+  background-color: #fff;
+  padding: 30px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="date"],
+form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 16px;
+}
+
+form input:focus,
+form select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+form button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+form button[type="submit"]:hover {
+  background-color: #0b5ed7;
+}
+
+/* Auth Container Styles */
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: 20px;
+  padding: 20px 0;
+}
+
+.auth-container h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: #0b5ed7;
+}
+
+/* Task List */
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.task-list li.completed .task-title {
+  text-decoration: line-through;
+  color: var(--secondary-color);
+}
+
+.task-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.task-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.task-actions a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.task-actions a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px 0;
+  background-color: var(--dark-color);
+  color: #fff;
+  margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .auth-container {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
+  }
+}
+
+/* Themes */
+
+/* Light Theme */
+body.light-theme {
+  background-color: var(--body-bg);
+  color: var(--body-color);
+}
+
+body.light-theme header,
+body.light-theme footer {
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+body.light-theme .task-list li {
+  background-color: #fff;
+}
+
+/* Dark Theme */
+body.dark-theme {
+  background-color: #18191a;
+  color: #e4e6eb;
+}
+
+body.dark-theme header,
+body.dark-theme footer {
+  background-color: #242526;
+}
+
+body.dark-theme .auth-container h1,
+body.dark-theme h1, h2, h3 {
+  color: #e4e6eb;
+}
+
+body.dark-theme form {
+  background-color: #242526;
+  border-color: #3a3b3c;
+}
+
+body.dark-theme form label {
+  color: #e4e6eb;
+}
+
+body.dark-theme form input,
+body.dark-theme form select {
+  background-color: #3a3b3c;
+  color: #e4e6eb;
+  border-color: #3a3b3c;
+}
+
+body.dark-theme form input:focus,
+body.dark-theme form select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+body.dark-theme .task-list li {
+  background-color: #242526;
+  border-color: #3a3b3c;
+}
+
+body.dark-theme .task-title {
+  color: #e4e6eb;
+}
+
+body.dark-theme .task-actions a {
+  color: var(--primary-color);
+}
+
+/* High Contrast Theme */
+body.high-contrast-theme {
+  background-color: #000;
+  color: #fff;
+}
+
+body.high-contrast-theme header,
+body.high-contrast-theme footer {
+  background-color: #000;
+}
+
+body.high-contrast-theme form {
+  background-color: #000;
+  border-color: #fff;
+}
+
+body.high-contrast-theme form label {
+  color: #fff;
+}
+
+body.high-contrast-theme form input,
+body.high-contrast-theme form select {
+  background-color: #000;
+  color: #fff;
+  border-color: #fff;
+}
+
+body.high-contrast-theme form input:focus,
+body.high-contrast-theme form select:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 255, 0.25);
+}
+
+body.high-contrast-theme .task-list li {
+  background-color: #000;
+  border-color: #fff;
+}
+
+body.high-contrast-theme .task-title {
+  color: #fff;
+}
+
+body.high-contrast-theme .task-actions a {
+  color: #00ffff;
+}
+
+body.high-contrast-theme .button {
+  background-color: #fff;
+  color: #000;
+}
+
+body.high-contrast-theme .button:hover {
+  background-color: #ccc;
+}

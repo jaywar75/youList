@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .auth-container
+        h1 Register
+        if error
+            p.error #{error}
+        form(action="/register", method="post")
+            .form-group
+                label(for="username") Username:
+                input#username(type="text", name="username", required)
+            .form-group
+                label(for="password") Password:
+                input#password(type="password", name="password", required)
+            .form-actions
+                button(type="submit") Register
