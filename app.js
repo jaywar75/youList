@@ -14,15 +14,15 @@ const cors = require('cors');
 const fs = require('fs');
 
 // Models
-const User = require('./models/User'); // Ensure this path is correct
+const User = require('./models/User');
 
 // Routers
 const indexRouter = require('./routes/index');
-const authRouter = require('./routes/auth'); // Your authentication routes
+const authRouter = require('./routes/auth');
 
 const app = express();
 
-// MongoDB Connection with Retry Logic
+// MongoDB Connection with Retry Logic (deprecations excluded)
 const connectWithRetry = async (retries = 5, delay = 3000) => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {});
@@ -34,7 +34,7 @@ const connectWithRetry = async (retries = 5, delay = 3000) => {
       setTimeout(() => connectWithRetry(retries - 1, delay), delay);
     } else {
       console.error('Failed to connect to MongoDB after multiple attempts');
-      process.exit(1); // Exit if retries are exhausted
+      process.exit(1);
     }
   }
 };
@@ -46,20 +46,20 @@ connectWithRetry();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// Middleware
+// Middleware setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-// Middleware to set the theme
+
+// Middleware for theme setting
 app.use((req, res, next) => {
-  const theme = req.cookies.theme || 'light'; // Assuming you're using cookies
+  const theme = req.cookies.theme || 'light';
   res.locals.theme = theme + '-theme';
   next();
 });
-
 
 // Logging setup
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'error.log'), { flags: 'a' });
@@ -115,11 +115,11 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/', indexRouter);
-app.use('/', authRouter); // Auth routes
+app.use('/', authRouter);
 
 // Catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createError(404));
+  res.status(404).send('Page not found');
 });
 
 // Error handler
