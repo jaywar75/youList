@@ -3,31 +3,15 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap')
-  body(class=bodyClass)
-    header
-      nav
-        // Left Navigation
-        ul.nav-left
-          if user
-            li Welcome, #{user.username}!
-            li: a(href="/logout") Logout
-
-        // Right Navigation
-        ul.nav-right
-          if !user
-            li: a(href="/login") Login
-            li: a(href="/register") Register
-
-        // Theme Dropdown (placed on the right)
-        div.theme-selector
-          label(for='theme-selector') Theme:
-          select#theme-selector
-            option(value='light-theme') Light
-            option(value='dark-theme') Dark
-            option(value='high-contrast-theme') High Contrast
-
+  body(class="theme")
+    .page-ribbon
+      .theme-selector-container
+        label(for="theme-selector") Theme:
+        select#theme-selector(name="theme")
+          option(value="light-theme") Light
+          option(value="dark-theme") Dark
+          option(value="high-contrast-theme") High Contrast
     block content
-    script(src='/javascripts/theme.js')
-  footer
-    p &copy; youList  |  vuluru, inc  |  All Rights Reserved
+    footer
+      p &copy; #{new Date().getFullYear()} youList | vuluru, Inc | All Rights Reserved
+    script(src="/javascripts/theme-switcher.js")

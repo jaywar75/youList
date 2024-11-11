@@ -53,6 +53,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
+// Middleware to set the theme
+app.use((req, res, next) => {
+  const theme = req.cookies.theme || 'light'; // Assuming you're using cookies
+  res.locals.theme = theme + '-theme';
+  next();
+});
+
 
 // Logging setup
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'error.log'), { flags: 'a' });

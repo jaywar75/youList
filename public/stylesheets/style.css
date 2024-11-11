@@ -1,5 +1,3 @@
-/* public/stylesheets/style.css */
-
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@400;500&display=swap');
 
@@ -14,12 +12,15 @@
 :root {
   --primary-color: #0d6efd;
   --secondary-color: #6c757d;
+  --high-contrast-magenta: #ff00ff;
   --success-color: #198754;
   --danger-color: #dc3545;
   --warning-color: #ffc107;
   --info-color: #0dcaf0;
   --light-color: #f8f9fa;
   --dark-color: #212529;
+  --dark-background-color: #1b1b1c;
+  --lighter-border-color: #3a3b3c;
   --body-bg: #f0f2f5;
   --body-color: #212529;
   --border-color: #dee2e6;
@@ -29,91 +30,123 @@
 /* Global Styles */
 body {
   font-family: 'Open Sans', Arial, sans-serif;
-  background-color: var(--body-bg);
-  color: var(--body-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
-/* Container */
-.container {
-  width: 90%;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Header and Navigation */
-header {
-  background-color: var(--dark-color);
-  color: #fff;
-}
-
-header nav {
+/* Page Ribbon */
+.page-ribbon {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-header nav ul li a {
+  padding: 10px 20px;
+  background-color: var(--ribbon-bg-color);
   color: #fff;
-  text-decoration: none;
-  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-header nav ul li a:hover {
-  color: var(--primary-color);
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-}
-
-.theme-selector {
-  margin-left: 20px;
-}
-
-.theme-selector label {
-  color: #fff;
-  margin-right: 5px;
-}
-
-#theme-selector {
-  padding: 5px;
-  border: none;
-  border-radius: var(--border-radius);
-}
-
-/* Main Content */
-h1, h2, h3 {
-  font-family: 'Roboto', Arial, sans-serif;
-  color: var(--dark-color);
-  margin-bottom: 20px;
-}
-
-p {
-  margin-bottom: 15px;
-  line-height: 1.6;
-}
-
-.error {
-  color: var(--danger-color);
+/* General Form Field Label Styling */
+.form-group label {
   font-weight: 600;
-  margin-bottom: 15px;
+  font-size: 1rem;
+  color: var(--dark-color);
+  margin-bottom: 5px;
+  display: inline-block;
 }
 
-/* Forms */
+/* Theme Selector Styling */
+.theme-selector-container label {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+/* Styling the Dropdown Itself (#theme-selector) */
+#theme-selector {
+  padding: 8px 12px; /* Padding similar to buttons */
+  border-radius: var(--border-radius);
+  border: none;
+  font-weight: 600; /* Matches the button font weight */
+  font-size: 1rem; /* Font size to match button text */
+  background-color: var(--light-color); /* Background color of the dropdown */
+  color: var(--dark-color); /* Text color of the dropdown */
+  font-family: inherit; /* Ensures it uses the same font as buttons */
+  cursor: pointer; /* Similar to buttons */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Theme-Specific Colors for Form and Theme Selector Labels */
+body.light-theme .theme-selector-container label,
+body.light-theme .form-group label {
+  color: #495057;
+}
+
+body.dark-theme .theme-selector-container label,
+body.dark-theme .form-group label {
+  color: #ffffff;
+}
+
+body.high-contrast-theme .theme-selector-container label,
+body.high-contrast-theme .form-group label {
+  color: #ff00ff;
+}
+
+/* Theme-Specific Styling for the Theme Selector */
+body.light-theme #theme-selector {
+  background-color: #ffffff;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+body.dark-theme #theme-selector {
+  background-color: #242526;
+  color: #e4e6eb;
+  border: 1px solid #4a4b4d;
+}
+
+body.high-contrast-theme #theme-selector {
+  background-color: #32cd32;
+  color: #ff00ff;
+  border: 2px solid #ff00ff;
+  font-weight: bold;
+}
+
+/* Hover Effect for the Dropdown (Matches Button Hover Effect) */
+#theme-selector:hover {
+  background-color: #e2e6ea;
+}
+
+/* For High Contrast, additional hover styling */
+body.high-contrast-theme #theme-selector:hover {
+  background-color: #228b22;
+}
+
+
+
+
+/* Auth Container Styles */
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px 30px;
+  border-radius: var(--border-radius);
+  background-color: var(--dark-background-color);
+  border: 1px solid var(--lighter-border-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.auth-container h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #e4e6eb;
+}
+
+/* Form Fields with Etched Look */
 form {
   background-color: #fff;
   padding: 30px;
@@ -139,6 +172,7 @@ form select {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   font-size: 16px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Etched look */
 }
 
 form input:focus,
@@ -165,230 +199,202 @@ form button[type="submit"]:hover {
   background-color: #0b5ed7;
 }
 
-/* Auth Container Styles */
-.auth-container {
-  width: 100%;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: 20px;
-  padding: 20px 0;
+/* Right-aligned Register Button with Shiny Silver Look */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 10px;
 }
 
-.auth-container h1 {
-  font-size: 2em;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* Buttons */
-.button {
+.slim-register-button {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: var(--primary-color);
-  color: #fff;
+  color: #000;
+  background: linear-gradient(to bottom right, rgba(192, 192, 192, 0.6), rgba(255, 255, 255, 0.2));
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: bold;
   text-decoration: none;
-  border: none;
-  border-radius: var(--border-radius);
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  border: 1px solid rgba(192, 192, 192, 0.6);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s, box-shadow 0.3s;
+  align-self: flex-end;
+  margin-top: 10px;
 }
 
-.button:hover {
-  background-color: #0b5ed7;
-}
-
-/* Task List */
-.task-list {
-  list-style: none;
-  padding: 0;
-}
-
-.task-list li {
-  background-color: #fff;
-  padding: 15px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.task-list li.completed .task-title {
-  text-decoration: line-through;
-  color: var(--secondary-color);
-}
-
-.task-title {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.task-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.task-actions a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.task-actions a:hover {
-  text-decoration: underline;
+.slim-register-button:hover {
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.4), rgba(192, 192, 192, 0.8));
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  color: #000;
 }
 
 /* Footer */
 footer {
+  background-color: var(--footer-bg-color);
   text-align: center;
   padding: 15px 0;
-  background-color: var(--dark-color);
   color: #fff;
   margin-top: 40px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  header nav {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  header nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .auth-container {
-    margin-right: auto;
-    margin-left: auto;
-    padding: 20px;
-  }
-}
-
-/* Themes */
-
 /* Light Theme */
 body.light-theme {
-  background-color: var(--body-bg);
-  color: var(--body-color);
+  --bg-color: #f7f9fc;
+  --text-color: #495057;
+  --ribbon-bg-color: #e3f2fd;
+  --footer-bg-color: #e3f2fd;
 }
 
-body.light-theme header,
-body.light-theme footer {
-  background-color: var(--dark-color);
-  color: #fff;
+body.light-theme .page-ribbon,
+body.light-theme footer,
+body.light-theme .theme-selector-container {
+  background-color: #e3f2fd;
 }
 
-body.light-theme .task-list li {
-  background-color: #fff;
+body.light-theme .auth-container {
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .auth-container button[type="submit"] {
+  background-color: #5c7cfa;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(92, 124, 250, 0.2);
 }
 
 /* Dark Theme */
 body.dark-theme {
-  background-color: #18191a;
-  color: #e4e6eb;
+  --bg-color: #18191a;
+  --text-color: #e4e6eb;
+  --ribbon-bg-color: #242526;
+  --footer-bg-color: #242526;
 }
 
-body.dark-theme header,
-body.dark-theme footer {
+body.dark-theme .page-ribbon,
+body.dark-theme footer,
+body.dark-theme .theme-selector-container {
   background-color: #242526;
 }
 
-body.dark-theme .auth-container h1,
-body.dark-theme h1, h2, h3 {
+body.dark-theme .auth-container {
+  background-color: var(--dark-background-color);
+  border: 2px solid var(--lighter-border-color);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+}
+
+body.dark-theme .auth-container h1 {
   color: #e4e6eb;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-body.dark-theme form {
-  background-color: #242526;
-  border-color: #3a3b3c;
+/* Dark Theme: Styling for the nested form */
+body.dark-theme .auth-container {
+  background-color: #333333; /* Dark gray background for better contrast */
+  color: #1b1b1c; /* White font to make text pop */
+  border: 1px solid #4a4b4d; /* Slightly lighter border for contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
 }
 
-body.dark-theme form label {
-  color: #e4e6eb;
+body.dark-theme .auth-container input {
+  background-color: #1b1b1c; /* Ultra-dark background for inputs */
+  color: #ffffff; /* White font color */
+  border: 1px solid #4a4b4d; /* Lighter border for input contrast */
 }
 
-body.dark-theme form input,
-body.dark-theme form select {
-  background-color: #3a3b3c;
-  color: #e4e6eb;
-  border-color: #3a3b3c;
+body.dark-theme .auth-container .button {
+  background-color: #007bff; /* Blue button background for dark theme */
+  color: #ffffff; /* White text on button */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4); /* Blue shadow for button */
 }
 
-body.dark-theme form input:focus,
-body.dark-theme form select:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-}
-
-body.dark-theme .task-list li {
-  background-color: #242526;
-  border-color: #3a3b3c;
-}
-
-body.dark-theme .task-title {
-  color: #e4e6eb;
-}
-
-body.dark-theme .task-actions a {
-  color: var(--primary-color);
+body.dark-theme .auth-container input:focus {
+  border-color: #007bff; /* Blue border on focus for contrast */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue focus shadow */
 }
 
 /* High Contrast Theme */
+body.high-contrast-theme {
+  --bg-color: #000;
+  --text-color: #ff00ff;
+  --ribbon-bg-color: #32cd32;
+  --footer-bg-color: #32cd32;
+}
+
+body.high-contrast-theme .page-ribbon,
+body.high-contrast-theme footer,
+body.high-contrast-theme .theme-selector-container {
+  background-color: #32cd32;
+}
+
+/* High-Contrast Theme: Styling for the nested form */
+body.high-contrast-theme .auth-container {
+  background-color: #32cd32; /* High-contrast green to match the ribbons */
+  color: #ff00ff; /* High-contrast magenta font for readability */
+  border: 2px solid #ff00ff; /* Magenta border for additional emphasis */
+  box-shadow: 0 4px 8px rgba(255, 0, 255, 0.4); /* Soft magenta shadow */
+}
+
+body.high-contrast-theme .auth-container label,
+body.high-contrast-theme .auth-container .button {
+  color: #ff00ff; /* Magenta font color for labels and buttons */
+}
+
+body.high-contrast-theme .auth-container input {
+  background-color: #000; /* Black background for inputs */
+  color: #ff00ff; /* Magenta font color */
+  border: 2px solid #ff00ff; /* Magenta border around input fields */
+}
+
+body.high-contrast-theme .auth-container input:focus {
+  border-color: #32cd32; /* Green border on focus */
+  box-shadow: 0 0 5px rgba(50, 205, 50, 0.6); /* Green focus shadow */
+}
+
+body.high-contrast-theme .auth-container button[type="submit"] {
+  background-color: #800080;
+  color: #32cd32;
+  padding: 15px 25px;
+  font-weight: bold;
+  border: 2px solid #ff00ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(255, 0, 255, 0.4);
+}
+
+body.high-contrast-theme .auth-container h1 {
+  color: #ff00ff;
+}
+
+/* High-Contrast Theme */
 body.high-contrast-theme {
   background-color: #000;
   color: #fff;
 }
 
-body.high-contrast-theme header,
-body.high-contrast-theme footer {
-  background-color: #000;
+body.high-contrast-theme .page-ribbon,
+body.high-contrast-theme footer,
+body.high-contrast-theme .theme-selector-container {
+  background-color: #32cd32; /* High contrast green */
 }
 
-body.high-contrast-theme form {
-  background-color: #000;
-  border-color: #fff;
+/* Dark font color for labels in the high-contrast theme */
+body.high-contrast-theme .auth-container label {
+  color: #1b1b1c; /* Dark font color for readability */
 }
 
-body.high-contrast-theme form label {
-  color: #fff;
+body.high-contrast-theme .auth-container button[type="submit"] {
+  background-color: #800080;
+  color: #32cd32;
+  padding: 15px 25px;
+  font-weight: bold;
+  border: 2px solid #ff00ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(255, 0, 255, 0.4);
 }
 
-body.high-contrast-theme form input,
-body.high-contrast-theme form select {
-  background-color: #000;
-  color: #fff;
-  border-color: #fff;
-}
-
-body.high-contrast-theme form input:focus,
-body.high-contrast-theme form select:focus {
-  border-color: #00ffff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 255, 255, 0.25);
-}
-
-body.high-contrast-theme .task-list li {
-  background-color: #000;
-  border-color: #fff;
-}
-
-body.high-contrast-theme .task-title {
-  color: #fff;
-}
-
-body.high-contrast-theme .task-actions a {
-  color: #00ffff;
-}
-
-body.high-contrast-theme .button {
-  background-color: #fff;
-  color: #000;
-}
-
-body.high-contrast-theme .button:hover {
-  background-color: #ccc;
+body.high-contrast-theme .auth-container h1 {
+  color: #ff00ff;
 }
