@@ -3,16 +3,35 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body(class="theme")
-    .page-ribbon
+  body(class=theme)
+
+    // Top Ribbon (navigation or title bar)
+    .page-ribbon-top
+      img(src='/images/logo.png', alt='Logo', class="logo")
       .theme-selector-container
         label(for="theme-selector") Theme:
         select#theme-selector(name="theme")
           option(value="light-theme") Light
           option(value="dark-theme") Dark
           option(value="high-contrast-theme") High Contrast
+      p.welcome-message Welcome to youList
+
+    // Notifications area (conditionally displayed if messages exist)
+    if messages && messages.length
+      .notifications
+        each message in messages
+          .notification(class=message.type)= message.text
+
+    // Main content area
     block content
-    footer
+
+    // Bottom Ribbon (footer or additional navigation)
+    .page-ribbon-bottom
       p &copy; #{new Date().getFullYear()} youList | vuluru, Inc | All Rights Reserved
-    // Ensure this script is right before the closing body tag for optimal load order
+      .quick-links
+        a(href='/about') About Us
+        a(href='/contact') Contact
+        a(href='/privacy') Privacy Policy
+
+    // Theme Script
     script(src="/javascripts/theme-switcher.js")

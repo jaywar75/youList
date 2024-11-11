@@ -9,6 +9,7 @@
 
 /* Define CSS Variables for Colors */
 :root {
+  /* General Colors */
   --primary-color: #007bff;
   --secondary-color: #6c757d;
   --success-color: #28a745;
@@ -23,24 +24,39 @@
   --warning-color: #ffc107;
   --info-color: #17a2b8;
   --light-color: #f8f9fa;
-  --light-gray-1: #f9f9f9;   /* Very light, almost white */
-  --light-gray-2: #f0f0f0;   /* Soft light gray, ideal for main backgrounds */
-  --light-gray-3: #e0e0e0;   /* Light neutral gray, for secondary sections */
-  --medium-light-gray: #cccccc; /* Medium-light gray, good for borders */
-  --medium-gray-1: #b3b3b3;  /* Medium gray, for subtle text or dividers */
-  --medium-gray-2: #999999;  /* Balanced gray, readable for text on light backgrounds */
-  --medium-gray-3: #808080;  /* Darker medium gray, perfect for accent elements */
-  --dark-color: #343a40;
-  --darkest-black: #0A0A0A; /* Deep black for the primary background */
-  --midnight-gray: #1C1C1C; /* Slightly lighter black for surfaces like cards */
-  --charcoal-gray: #333333; /* Charcoal for borders or less prominent sections */
-  --smoky-gray: #4F4F4F; /* Soft gray for text and secondary elements */
-  --steel-gray: #707070; /* Medium gray for text and icons */
-  --deep-blue: #1E3A5F; /* Rich blue for primary actions like buttons */
-  --navy-blue: #26418F; /* Accent blue for highlights or links */
   --body-bg: #ffffff;
-  --body-color: #212529;
   --border-color: #ced4da;
+  --primary-font-color:  #26418F;
+
+  /* Ribbon colors */
+  --ribbon-bg-color-light: #ced4da;
+  --ribbon-bg-color-dark: #495057;
+  --ribbon-bg-color-high-contrast: #32cd32;
+  --ribbon-top-bg-color: var(--primary-color);
+  --ribbon-bottom-bg-color: #e0e0e0; /* Default light color */
+  --ribbon-bottom-text-color: #f9f9f9;
+
+  /* Hover-specific colors (general) */
+  --ribbon-bottom-bg-hover: #d0d0d0; /* Slightly darker shade for hover */
+  --ribbon-bottom-text-hover: #333333;
+
+  --light-gray-1: #f9f9f9;        /* Very light, almost white */
+  --light-gray-2: #f0f0f0;        /* Soft light gray, ideal for main backgrounds */
+  --light-gray-3: #e0e0e0;        /* Light neutral gray, for secondary sections */
+  --medium-light-gray: #cccccc;   /* Medium-light gray, good for borders */
+  --medium-gray-1: #b3b3b3;       /* Medium gray, for subtle text or dividers */
+  --medium-gray-2: #999999;       /* Balanced gray, readable for text on light backgrounds */
+  --medium-gray-3: #808080;       /* Darker medium gray, perfect for accent elements */
+  --dark-color: #343a40;
+  --darkest-black: #0A0A0A;       /* Deep black for the primary background */
+  --midnight-gray: #1C1C1C;       /* Slightly lighter black for surfaces like cards */
+  --charcoal-gray: #333333;       /* Charcoal for borders or less prominent sections */
+  --smoky-gray: #4F4F4F;          /* Soft gray for text and secondary elements */
+  --steel-gray: #707070;          /* Medium gray for text and icons */
+  --deep-blue: #1E3A5F;           /* Rich blue for primary actions like buttons */
+  --navy-blue: #26418F;           /* Accent blue for highlights or links */
+  --body-color: #212529;
+
   --border-radius: 0.75rem;
   --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -50,7 +66,7 @@ body {
   font-family: 'Open Sans', Arial, sans-serif;
   background-color: var(--body-bg);
   color: var(--body-color);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* Container */
@@ -60,39 +76,170 @@ body {
   margin: 0 auto;
 }
 
-/* Page Ribbon */
-.page-ribbon {
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 15px 0;
+/* Top Ribbon */
+.page-ribbon-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: var(--ribbon-bg-color-light); /* Default for light theme */
+  color: var(--body-color);
+  box-shadow: var(--box-shadow);
+}
+
+.page-ribbon-top .logo {
+  height: 40px;
+  margin-right: 15px;
+}
+
+.page-ribbon-top .theme-selector-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.page-ribbon-top .welcome-message {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-left: auto;
+}
+
+/* Bottom Ribbon */
+.page-ribbon-bottom {
+  padding: 15px 20px;
+  background-color: var(--ribbon-bg-color-dark); /* Default for dark theme */
+  color: #ffffff;
   text-align: center;
   box-shadow: var(--box-shadow);
 }
 
-.page-ribbon h1 {
-  font-size: 1.5rem;
-  margin: 0;
+.page-ribbon-bottom .quick-links a {
+  color: #ffffff;
+  margin: 0 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
 }
+
+.page-ribbon-bottom .quick-links a:hover {
+  color: var(--primary-color);
+}
+
+/* Light Theme Specific Variables */
+body.light-theme {
+  --ribbon-top-bg-color: #f0f4f8;         /* Lighter top ribbon for light theme */
+  --ribbon-bottom-bg-color: #007bff;      /* Blue bottom ribbon for light theme */
+  --ribbon-bottom-text-color: #ffffff;    /* White text for contrast */
+
+  /* Light theme hover */
+  --ribbon-bottom-bg-hover: #0056b3;      /* Darker blue for hover */
+  --ribbon-bottom-text-hover: #e6e6e6;    /* Light gray for better contrast */
+}
+
+/* Dark Theme Specific Variables */
+body.dark-theme {
+  --ribbon-top-bg-color: #333333;         /* Darker top ribbon for dark theme */
+  --ribbon-bottom-bg-color: #1C1C1C;      /* Deep gray for bottom ribbon */
+  --ribbon-bottom-text-color: #e4e6eb;    /* Light text for readability */
+
+  /* Dark theme hover */
+  --ribbon-bottom-bg-hover: #262626;      /* Slightly lighter gray for hover */
+  --ribbon-bottom-text-hover: #c7c7c7;    /* Light gray for hover text */
+}
+
+/* High Contrast Theme Specific Variables */
+body.high-contrast-theme {
+  --ribbon-top-bg-color: #ff00ff;         /* Bright magenta for top ribbon */
+  --ribbon-bottom-bg-color: #32cd32;      /* Bright green for bottom ribbon */
+  --ribbon-bottom-text-color: #000000;    /* Dark text for readability */
+
+  /* High-contrast theme hover */
+  --ribbon-bottom-bg-hover: #28a745;      /* Darker green for hover */
+  --ribbon-bottom-text-hover: #ffffff;    /* White text for hover */
+}
+
+/* Apply Ribbon Styling */
+.page-ribbon-top {
+  background-color: var(--ribbon-top-bg-color);
+  color: var(--ribbon-bottom-text-color);
+}
+
+.page-ribbon-bottom {
+  background-color: var(--ribbon-bottom-bg-color);
+  color: var(--ribbon-bottom-text-color);
+  padding: 15px 20px;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover Styles for Page Ribbon Bottom */
+.page-ribbon-bottom:hover {
+  background-color: var(--ribbon-bottom-bg-hover);
+  color: var(--ribbon-bottom-text-hover);
+}
+
+/* Optional: Ribbon Link Styles */
+.page-ribbon-bottom a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.page-ribbon-bottom a:hover {
+  color: var(--ribbon-bottom-text-hover); /* Hover text color for links */
+}
+
 
 /* Theme Selector */
-.theme-selector-container {
-  margin-top: 10px;
-  text-align: center;
-}
-
 .theme-selector-container label {
   font-weight: 600;
   margin-right: 8px;
-  color: #fff;
 }
 
 #theme-selector {
-  padding: 8px 12px;
+  padding: 6px 12px;
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
   font-size: 1rem;
   cursor: pointer;
 }
+
+/* Theme-Specific Styles */
+body.light-theme .page-ribbon-top {
+  background-color: var(--ribbon-bg-color-light);
+}
+
+body.light-theme .page-ribbon-bottom {
+  background-color: var(--primary-color);
+}
+
+body.dark-theme .page-ribbon-top,
+body.dark-theme .page-ribbon-bottom {
+  background-color: var(--ribbon-bg-color-dark);
+}
+
+body.high-contrast-theme .page-ribbon-top,
+body.high-contrast-theme .page-ribbon-bottom {
+  background-color: var(--ribbon-bg-color-high-contrast);
+  color: #000;
+}
+
+/* Adjustments for Small Screens */
+@media (max-width: 576px) {
+  .page-ribbon-top,
+  .page-ribbon-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .page-ribbon-top .welcome-message {
+    margin-left: 0;
+    margin-top: 10px;
+  }}
 
 /* Auth Container */
 .auth-container {
@@ -160,7 +307,7 @@ form {
 /* Submit Button */
 button[type="submit"] {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   background-color: var(--primary-color);
   color: #fff;
   border: none;
@@ -174,7 +321,7 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #0056b3;
-  transform: translateY(-2px);
+  transform: translateY(1px);
 }
 
 button[type="submit"]:active {
@@ -200,13 +347,14 @@ button[type="submit"]:active {
   color: #0056b3;
 }
 
-/* Footer */
-footer {
-  background-color: var(--dark-color);
-  color: #fff;
-  text-align: center;
-  padding: 15px 0;
-  margin-top: 40px;
+/* Footer Link Styles */
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--primary-color);
 }
 
 /* Responsive Design */
@@ -221,24 +369,32 @@ footer {
 
   .auth-container h1 {
     font-size: 1.75rem;
-  }
-}
+  }}
 
 /* Theme Styles */
 
 /* Light Theme */
 body.light-theme {
-  --body-bg: #ffffff;
-  --body-color: #212529;
-  --primary-color: #007bff;
+  --ribbon-top-bg-color: #f0f4f8;         /* Lighter top ribbon for light theme */
+  --ribbon-bottom-bg-color: #007bff;      /* Blue bottom ribbon for light theme */
+  --ribbon-bottom-text-color: #ffffff;    /* White text for contrast */
+
+  /* Light theme hover */
+  --ribbon-bottom-bg-hover: #0056b3;      /* Darker blue for hover */
+  --ribbon-bottom-text-hover: #e6e6e6;    /* Light gray for better contrast */
 }
 
-body.light-theme .auth-container {
-  background-color: #f8f9fa;
+/* Light Theme Styles */
+body.light-theme .page-ribbon-bottom {
+  background-color: var(--ribbon-bg-color-light);
 }
 
-body.light-theme .page-ribbon {
-  background-color: var(--primary-color);
+body.light-theme .page-ribbon-bottom .quick-links a {
+  color: #007bff; /* Initial link color in light theme */
+}
+
+body.light-theme .page-ribbon-bottom .quick-links a:hover {
+  color: #ff007f; /* Custom hover color for links in light theme */
 }
 
 /* Dark Theme */
@@ -258,7 +414,7 @@ body.dark-theme .page-ribbon {
 }
 
 body.dark-theme .form-group label {
-  color: #0A0A0A;
+  color: #6c757d;
 }
 
 body.dark-theme .form-group input {
@@ -289,7 +445,7 @@ body.high-contrast-theme {
 }
 
 body.high-contrast-theme .auth-container {
-  background-color: #000000;
+  background-color: #00ff66;
   color: #ffffff;
 }
 
@@ -298,7 +454,7 @@ body.high-contrast-theme .page-ribbon {
 }
 
 body.high-contrast-theme .form-group label {
-  color: #cc00ff;
+  color: #ff00ff;
 }
 
 body.high-contrast-theme .form-group input {
@@ -327,4 +483,52 @@ body.high-contrast-theme .additional-actions a {
 
 body.high-contrast-theme .additional-actions a:hover {
   color: #ff6600;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--light-color);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+}
+
+.dashboard-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.dashboard-section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius);
+  color: #fff;
+  box-shadow: var(--box-shadow);
+}
+
+.dashboard-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.dashboard-section p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.dashboard-section .button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.dashboard-section .button:hover {
+  background-color: #0056b3;
 }

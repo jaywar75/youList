@@ -2,8 +2,8 @@ extends layout
 
 block content
     .auth-container
-        h1 Register
-        form(action="/auth/register" method="POST")
+        h1
+        form(action="/register" method="POST")
             .form-group
                 label(for="firstName") First Name:
                 input#firstName(type="text" name="firstName" required)

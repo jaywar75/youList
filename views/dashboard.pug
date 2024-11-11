@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    .dashboard-container
+        h1 Dashboard
+        p Welcome to your youList Dashboard! Choose an option below to get started.
+
+        // Task Manager Section
+        .dashboard-section
+            h2 Task Manager
+            p Manage your tasks and stay organized.
+            a.button(href="/tasks") Go to Task Manager
+
+        // Add additional sections as needed
+        .dashboard-section
+            h2 Reports
+            p View and manage your reports.
+            a.button(href="/reports") Access Reports
+
+        .dashboard-section
+            h2 Settings
+            p Customize your account and preferences.
+            a.button(href="/settings") Manage Settings
+
+        .dashboard-section
+            h2 Help
+            p Get help and support for using youList.
+            a.button(href="/help") Visit Help Center
