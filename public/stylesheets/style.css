@@ -46,15 +46,6 @@ body {
   position: relative;
 }
 
-/* General Form Field Label Styling */
-.form-group label {
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--dark-color);
-  margin-bottom: 5px;
-  display: inline-block;
-}
-
 /* Theme Selector Styling */
 .theme-selector-container label {
   font-weight: 600;
@@ -65,67 +56,18 @@ body {
 
 /* Styling the Dropdown Itself (#theme-selector) */
 #theme-selector {
-  padding: 8px 12px; /* Padding similar to buttons */
+  padding: 8px 12px;
   border-radius: var(--border-radius);
   border: none;
-  font-weight: 600; /* Matches the button font weight */
-  font-size: 1rem; /* Font size to match button text */
-  background-color: var(--light-color); /* Background color of the dropdown */
-  color: var(--dark-color); /* Text color of the dropdown */
-  font-family: inherit; /* Ensures it uses the same font as buttons */
-  cursor: pointer; /* Similar to buttons */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, color 0.3s;
 }
-
-/* Theme-Specific Colors for Form and Theme Selector Labels */
-body.light-theme .theme-selector-container label,
-body.light-theme .form-group label {
-  color: #495057;
-}
-
-body.dark-theme .theme-selector-container label,
-body.dark-theme .form-group label {
-  color: #ffffff;
-}
-
-body.high-contrast-theme .theme-selector-container label,
-body.high-contrast-theme .form-group label {
-  color: #ff00ff;
-}
-
-/* Theme-Specific Styling for the Theme Selector */
-body.light-theme #theme-selector {
-  background-color: #ffffff;
-  color: #495057;
-  border: 1px solid #dee2e6;
-}
-
-body.dark-theme #theme-selector {
-  background-color: #242526;
-  color: #e4e6eb;
-  border: 1px solid #4a4b4d;
-}
-
-body.high-contrast-theme #theme-selector {
-  background-color: #32cd32;
-  color: #ff00ff;
-  border: 2px solid #ff00ff;
-  font-weight: bold;
-}
-
-/* Hover Effect for the Dropdown (Matches Button Hover Effect) */
-#theme-selector:hover {
-  background-color: #e2e6ea;
-}
-
-/* For High Contrast, additional hover styling */
-body.high-contrast-theme #theme-selector:hover {
-  background-color: #228b22;
-}
-
-
-
 
 /* Auth Container Styles */
 .auth-container {
@@ -172,7 +114,7 @@ form select {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   font-size: 16px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Etched look */
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 form input:focus,
@@ -199,33 +141,41 @@ form button[type="submit"]:hover {
   background-color: #0b5ed7;
 }
 
-/* Right-aligned Register Button with Shiny Silver Look */
-.form-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-top: 10px;
-}
-
-.slim-register-button {
+/* Floating Login Button for Register Form */
+.auth-container .floating-login-button {
   display: inline-block;
   color: #000;
   background: linear-gradient(to bottom right, rgba(192, 192, 192, 0.6), rgba(255, 255, 255, 0.2));
-  padding: 6px 12px;
-  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 1rem;
   font-weight: bold;
-  text-decoration: none;
   border: 1px solid rgba(192, 192, 192, 0.6);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
   transition: background 0.3s, box-shadow 0.3s;
-  align-self: flex-end;
-  margin-top: 10px;
+  margin-top: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.slim-register-button:hover {
+.auth-container .floating-login-button:hover {
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.4), rgba(192, 192, 192, 0.8));
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-  color: #000;
+}
+
+/* Forgot Password Link */
+.auth-container .forgot-password-link {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  text-decoration: underline;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.auth-container .forgot-password-link:hover {
+  color: var(--danger-color);
 }
 
 /* Footer */
@@ -243,12 +193,6 @@ body.light-theme {
   --text-color: #495057;
   --ribbon-bg-color: #e3f2fd;
   --footer-bg-color: #e3f2fd;
-}
-
-body.light-theme .page-ribbon,
-body.light-theme footer,
-body.light-theme .theme-selector-container {
-  background-color: #e3f2fd;
 }
 
 body.light-theme .auth-container {
@@ -271,17 +215,10 @@ body.dark-theme {
   --footer-bg-color: #242526;
 }
 
-body.dark-theme .page-ribbon,
-body.dark-theme footer,
-body.dark-theme .theme-selector-container {
-  background-color: #242526;
-}
-
 body.dark-theme .auth-container {
   background-color: var(--dark-background-color);
   border: 2px solid var(--lighter-border-color);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-  border-radius: 8px;
 }
 
 body.dark-theme .auth-container h1 {
@@ -289,31 +226,6 @@ body.dark-theme .auth-container h1 {
   font-weight: 700;
   margin-bottom: 20px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-/* Dark Theme: Styling for the nested form */
-body.dark-theme .auth-container {
-  background-color: #333333; /* Dark gray background for better contrast */
-  color: #1b1b1c; /* White font to make text pop */
-  border: 1px solid #4a4b4d; /* Slightly lighter border for contrast */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
-}
-
-body.dark-theme .auth-container input {
-  background-color: #1b1b1c; /* Ultra-dark background for inputs */
-  color: #ffffff; /* White font color */
-  border: 1px solid #4a4b4d; /* Lighter border for input contrast */
-}
-
-body.dark-theme .auth-container .button {
-  background-color: #007bff; /* Blue button background for dark theme */
-  color: #ffffff; /* White text on button */
-  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4); /* Blue shadow for button */
-}
-
-body.dark-theme .auth-container input:focus {
-  border-color: #007bff; /* Blue border on focus for contrast */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue focus shadow */
 }
 
 /* High Contrast Theme */
@@ -324,77 +236,9 @@ body.high-contrast-theme {
   --footer-bg-color: #32cd32;
 }
 
-body.high-contrast-theme .page-ribbon,
-body.high-contrast-theme footer,
-body.high-contrast-theme .theme-selector-container {
-  background-color: #32cd32;
-}
-
-/* High-Contrast Theme: Styling for the nested form */
 body.high-contrast-theme .auth-container {
-  background-color: #32cd32; /* High-contrast green to match the ribbons */
-  color: #ff00ff; /* High-contrast magenta font for readability */
-  border: 2px solid #ff00ff; /* Magenta border for additional emphasis */
-  box-shadow: 0 4px 8px rgba(255, 0, 255, 0.4); /* Soft magenta shadow */
-}
-
-body.high-contrast-theme .auth-container label,
-body.high-contrast-theme .auth-container .button {
-  color: #ff00ff; /* Magenta font color for labels and buttons */
-}
-
-body.high-contrast-theme .auth-container input {
-  background-color: #000; /* Black background for inputs */
-  color: #ff00ff; /* Magenta font color */
-  border: 2px solid #ff00ff; /* Magenta border around input fields */
-}
-
-body.high-contrast-theme .auth-container input:focus {
-  border-color: #32cd32; /* Green border on focus */
-  box-shadow: 0 0 5px rgba(50, 205, 50, 0.6); /* Green focus shadow */
-}
-
-body.high-contrast-theme .auth-container button[type="submit"] {
-  background-color: #800080;
-  color: #32cd32;
-  padding: 15px 25px;
-  font-weight: bold;
-  border: 2px solid #ff00ff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(255, 0, 255, 0.4);
-}
-
-body.high-contrast-theme .auth-container h1 {
+  background-color: #32cd32;
   color: #ff00ff;
-}
-
-/* High-Contrast Theme */
-body.high-contrast-theme {
-  background-color: #000;
-  color: #fff;
-}
-
-body.high-contrast-theme .page-ribbon,
-body.high-contrast-theme footer,
-body.high-contrast-theme .theme-selector-container {
-  background-color: #32cd32; /* High contrast green */
-}
-
-/* Dark font color for labels in the high-contrast theme */
-body.high-contrast-theme .auth-container label {
-  color: #1b1b1c; /* Dark font color for readability */
-}
-
-body.high-contrast-theme .auth-container button[type="submit"] {
-  background-color: #800080;
-  color: #32cd32;
-  padding: 15px 25px;
-  font-weight: bold;
   border: 2px solid #ff00ff;
-  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(255, 0, 255, 0.4);
-}
-
-body.high-contrast-theme .auth-container h1 {
-  color: #ff00ff;
 }
