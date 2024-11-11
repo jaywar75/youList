@@ -1,4 +1,3 @@
-/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
 /* CSS Reset */
@@ -13,16 +12,37 @@
   --primary-color: #007bff;
   --secondary-color: #6c757d;
   --success-color: #28a745;
+  --vibrant-pink: #ff007f;       /* A bold pink, eye-catching for buttons or alerts */
+  --bright-orange: #ff6600;      /* High-contrast orange for highlights or calls-to-action */
+  --electric-blue: #0066ff;      /* Bright blue that stands out on both light and dark themes */
+  --lime-green: #00ff66;         /* Fresh green, great for success indicators or hover effects */
+  --sunflower-yellow: #ffd700;   /* Bright yellow, useful for warnings or attention-grabbing elements */
+  --neon-purple: #cc00ff;        /* Vivid purple that works well for accentuating links or labels */
+  --aqua-cyan: #00ffff;          /* Bold cyan, useful for informational or neutral elements */
   --danger-color: #dc3545;
   --warning-color: #ffc107;
   --info-color: #17a2b8;
   --light-color: #f8f9fa;
+  --light-gray-1: #f9f9f9;   /* Very light, almost white */
+  --light-gray-2: #f0f0f0;   /* Soft light gray, ideal for main backgrounds */
+  --light-gray-3: #e0e0e0;   /* Light neutral gray, for secondary sections */
+  --medium-light-gray: #cccccc; /* Medium-light gray, good for borders */
+  --medium-gray-1: #b3b3b3;  /* Medium gray, for subtle text or dividers */
+  --medium-gray-2: #999999;  /* Balanced gray, readable for text on light backgrounds */
+  --medium-gray-3: #808080;  /* Darker medium gray, perfect for accent elements */
   --dark-color: #343a40;
+  --darkest-black: #0A0A0A; /* Deep black for the primary background */
+  --midnight-gray: #1C1C1C; /* Slightly lighter black for surfaces like cards */
+  --charcoal-gray: #333333; /* Charcoal for borders or less prominent sections */
+  --smoky-gray: #4F4F4F; /* Soft gray for text and secondary elements */
+  --steel-gray: #707070; /* Medium gray for text and icons */
+  --deep-blue: #1E3A5F; /* Rich blue for primary actions like buttons */
+  --navy-blue: #26418F; /* Accent blue for highlights or links */
   --body-bg: #ffffff;
   --body-color: #212529;
   --border-color: #ced4da;
-  --border-radius: 0.35rem;
-  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --border-radius: 0.75rem;
+  --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Global Styles */
@@ -127,6 +147,16 @@ form {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  color: var(--body-color);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Slight inner shadow */
+}
+
 /* Submit Button */
 button[type="submit"] {
   width: 100%;
@@ -145,6 +175,11 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0056b3;
   transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Additional Actions */
@@ -199,7 +234,7 @@ body.light-theme {
 }
 
 body.light-theme .auth-container {
-  background-color: #ffffff;
+  background-color: #f8f9fa;
 }
 
 body.light-theme .page-ribbon {
@@ -214,7 +249,7 @@ body.dark-theme {
 }
 
 body.dark-theme .auth-container {
-  background-color: #495057;
+  background-color: #0A0A0A;
   color: #f8f9fa;
 }
 
@@ -223,17 +258,17 @@ body.dark-theme .page-ribbon {
 }
 
 body.dark-theme .form-group label {
-  color: #f8f9fa;
+  color: #0A0A0A;
 }
 
 body.dark-theme .form-group input {
   background-color: #6c757d;
   color: #f8f9fa;
-  border: 1px solid #ced4da;
+  border: 1px solid #0A0A0A;
 }
 
 body.dark-theme .form-group input:focus {
-  border-color: #adb5bd;
+  border-color: #0A0A0A;
   box-shadow: 0 0 5px rgba(173, 181, 189, 0.5);
 }
 
@@ -263,7 +298,7 @@ body.high-contrast-theme .page-ribbon {
 }
 
 body.high-contrast-theme .form-group label {
-  color: #ffffff;
+  color: #cc00ff;
 }
 
 body.high-contrast-theme .form-group input {
@@ -279,11 +314,11 @@ body.high-contrast-theme .form-group input:focus {
 
 body.high-contrast-theme button[type="submit"] {
   background-color: var(--primary-color);
-  color: #000000;
+  color: #00ff66;
 }
 
 body.high-contrast-theme button[type="submit"]:hover {
-  background-color: #e600e6;
+  background-color: #ff6600;
 }
 
 body.high-contrast-theme .additional-actions a {
@@ -291,5 +326,5 @@ body.high-contrast-theme .additional-actions a {
 }
 
 body.high-contrast-theme .additional-actions a:hover {
-  color: #e600e6;
+  color: #ff6600;
 }
